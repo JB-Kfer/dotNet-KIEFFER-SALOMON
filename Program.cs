@@ -17,6 +17,8 @@ public class Program
         Directory.CreateDirectory(outputDirectory);
         List<string> imagePaths = new List<string>(Directory.GetFiles(inputDirectory, "*.jpg"));
 
+        Console.WriteLine($"Total number of images to process: {imagePaths.Count}");
+
         // Parallel processing
         Console.WriteLine("Starting parallel processing...");
         Stopwatch totalParallelStopwatch = Stopwatch.StartNew();
@@ -51,7 +53,7 @@ public class Program
         totalSequentialStopwatch.Stop();
         Console.WriteLine($"Total time for sequential processing: {totalSequentialStopwatch.ElapsedMilliseconds} ms");
 
-        // Calculating and displaying the performance gain
+        // Performance gain
         double performanceGain = (double)totalSequentialStopwatch.ElapsedMilliseconds / totalParallelStopwatch.ElapsedMilliseconds;
         Console.WriteLine($"Performance gain (Sequential/Parallel): {performanceGain}x");
     }
